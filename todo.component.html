@@ -1,0 +1,66 @@
+<div class="row justify-content-center">
+<div class="card bg-dark">
+    <div class="card-body">
+    <h4 style="padding-left: 500px;" class="text-white">To Do List App</h4><hr>
+    <div>
+  <form ngForm="todoForm">
+      <div class="row justify-content-center">
+        
+        <div class="col-md-3">
+            <label class="text-white"><b>Title</b></label>
+            <input class="form-control" type="text"placeholder="Title" [(ngModel)]="todo.title" name="title">
+        </div>
+        <div class="col-md-3">
+          <label  class="text-white"><b>Description</b></label>
+          <input class="form-control" type="text"placeholder="Description"  [(ngModel)]="todo.description" name="description">
+      </div>
+      <div class="col-md-3"style="cursor: pointer;">
+            <i *ngIf="isAdded" class="fa fa-plus-circle fa-2x" title="Add"style="padding-top:25px ;" (click)="add(todoForm)"></i>&nbsp;
+            <i *ngIf="editMode"class="fa fa-edit fa-2x"title="Update"style="padding-top:27px;"  (click)="update(todoForm)"></i>&nbsp;
+            <i class="fa fa-refresh fa-2x" aria-hidden="true"title="clear"style="padding-top:27px;padding-right:25px ;"  (click)="clearModal(todoForm)"></i>
+ </div>
+      
+    </div>
+</form></div><br>
+<div class="table-responsive justify-content-center" style="width:70%;padding-left: 220px;padding-right: 150px;">
+    <table class="table table-dark table-striped">
+      <thead>
+        <tr>
+          <th class="text-center">Task Number</th>
+          <th class="text-center">Title</th>
+          <th class="text-center" *ngIf="showDesc">Description</th>
+          <th class="text-center">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="toDoListArray?.length === 0">
+          <td class="text-center" colspan="4">No Records Available</td>
+        </tr>
+        <tr *ngFor="let item of toDoListArray;let i=index">
+          <td class="text-center">{{i+1}}</td>
+          <td class="text-center">
+           {{item.title}}
+           <i class="fa fa-eye" aria-hidden="true"(click)="showDescription()"title="View Description"></i>&nbsp;
+           <i class="fa fa-remove"aria-hidden="true"(click)="hideDescription()"title="Hide Description" ></i>
+          </td>
+          <td  class="text-center"*ngIf="showDesc"style="cursor: pointer;">
+            {{item.description}}
+          </td>
+          <td class="text-center"style="cursor: pointer;">
+            <i class="fa fa-edit" (click)="edit(item);" title="Edit"></i>&nbsp;
+            <i class="fa fa-trash" (click)="delete(item.todoId);" title="Delete"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  </div>
+</div>
+
+  
+
+
+
+
+  
